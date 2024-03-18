@@ -8,29 +8,29 @@ class BCD {
   constructor(num) {
     this.numbers = String(num)
       .split("")
-      .map((number) => +number)
-      .reverse();
+      .map((number) => +number);
+    //   .reverse();
   }
 
   valueOf() {
     let binaryValueStr = "0b";
 
-    const reversedNumbers = [...this.numbers].reverse();
+    const numbers = [...this.numbers];
 
-    const binaryReversedNumbers = reversedNumbers.map((number) =>
+    const binaryNumbers = numbers.map((number) =>
       number.toString(2).padStart(4, 0)
     );
 
-    const decimalValueStr = parseInt(binaryReversedNumbers.join(""), 2);
+    const decimalValueStr = parseInt(binaryNumbers.join(""), 2);
 
-    binaryValueStr = binaryValueStr.concat(binaryReversedNumbers.join("_"));
+    binaryValueStr = binaryValueStr.concat(binaryNumbers.join("_"));
 
     return `${binaryValueStr} или ${decimalValueStr}`;
   }
 
   get(idx = 0) {
     // Учитываем отрицательный индекс
-    const idxTmp = idx > 0 ? idx : this.numbers.length + idx;
+    const idxTmp = idx >= 0 ? this.numbers.length - 1 - idx : idx * -1 - 1;
 
     console.log({ len: this.numbers.length, idxTmp });
     return this.numbers[idxTmp];
@@ -40,5 +40,5 @@ class BCD {
 const n = new BCD(65536);
 
 console.log(n.valueOf());
-console.log(n.get(-1));
+console.log(n.get(1));
 console.log(n.get(-2));
