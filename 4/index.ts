@@ -1,4 +1,7 @@
-class BCD {
+interface IBCD {
+    numbers: number[];
+}
+class BCD implements IBCD {
     numbers: number[] = [];
 
     constructor(num: bigint) {
@@ -22,14 +25,14 @@ class BCD {
         return this.numbers;
     }
 
-    get(idx) {}
+    // get(idx) {}
 }
 
 const n = new BCD(65536n);
 
 console.log(n.valueOf());
-console.log(n.get(1));
-console.log(n.get(2));
-console.log(n.get(3));
-console.log(n.get(-10));
-console.log(n.get(-2));
+// console.log(n.get(1));
+// console.log(n.get(2));
+// console.log(n.get(3));
+// console.log(n.get(-10));
+// console.log(n.get(-2));
